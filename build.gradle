@@ -107,6 +107,17 @@ repositories {
         name 'CleanroomMC Maven'
         url 'https://maven.cleanroommc.com'
     }
+
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+
+    flatDir {
+        dir "libs"
+    }
 }
 
 dependencies {
@@ -144,6 +155,9 @@ dependencies {
         testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
+
+    compileOnly "com.example:Immersive Vehicles-1.12.2:22.18.0"
+    implementation "curse.maven:ntm-708939:5254559"
 }
 
 apply from: 'gradle/scripts/dependencies.gradle'
