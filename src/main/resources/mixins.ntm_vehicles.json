@@ -1,0 +1,13 @@
+{
+	"package": "io.github.techtastic.ntm_vehicles.mixin",
+	"required": true,
+	"refmap": "mixins.ntm_vehicles.refmap.json",
+	"target": "@env(DEFAULT)",
+	"minVersion": "0.8.5",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"MixinJSONBullet"
+	],
+	"server": [],
+	"client": []
+}
