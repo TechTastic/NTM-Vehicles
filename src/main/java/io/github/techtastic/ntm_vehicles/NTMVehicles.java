@@ -46,13 +46,7 @@ public class NTMVehicles {
             JSONVariableModifier speedVar = Util.getVariableModifier(bullet.definition, "gasSpreadSpeed");
             JSONVariableModifier gasTypeVar = Util.getVariableModifier(bullet.definition, "gasType");
             double speed = speedVar == null ? 1.25 : speedVar.setValue;
-            int gasType = 0;
-            if (gasTypeVar.setValue == 1)
-                gasType = 1;
-            else if (gasTypeVar.setValue == 2)
-                gasType = 2;
-            else if (gasTypeVar.setValue == 3)
-                gasType = 3;
+            int gasType = gasTypeVar == null ? 0 : (int) gasTypeVar.setValue;
             ExplosionChaos.spawnChlorine(actualWorld, pos.x, pos.y, pos.z, (int) Util.getBlastSize(bullet.definition), speed, gasType);
         });
     }
