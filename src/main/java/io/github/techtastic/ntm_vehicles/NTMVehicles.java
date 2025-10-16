@@ -37,7 +37,7 @@ public class NTMVehicles {
             EntityNukeTorex.statFac(actualWorld, pos.x, pos.y, pos.z, (int) Util.getBlastSize(bullet.definition));
         });
 
-        EntityBullet.registerCustomHitFunction("ntm_vehicles:chlorine", (world, pos, side, type, bullet) -> {
+        EntityBullet.registerCustomHitFunction("ntm_vehicles:gas", (world, pos, side, type, bullet) -> {
             World actualWorld = Util.getWorld((WrapperWorld) world);
 
             if (actualWorld == null)
