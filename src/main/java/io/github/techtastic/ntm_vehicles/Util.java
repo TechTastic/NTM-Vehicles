@@ -29,6 +29,12 @@ public class Util {
         return null;
     }
 
+    public static double getConstantValue(JSONBullet definition, String name, double defaultValue) {
+        if (definition.constantValues == null)
+            return defaultValue;
+        return definition.constantValues.getOrDefault(name, defaultValue);
+    }
+
     public static double getBlastSize(JSONBullet bullet) {
         return bullet.bullet.blastStrength == 0f ? bullet.bullet.diameter / 10f : bullet.bullet.blastStrength;
     }
