@@ -6,7 +6,6 @@ import minecrafttransportsimulator.jsondefs.JSONVariableModifier;
 import net.minecraft.world.World;
 
 import java.lang.reflect.Field;
-import java.util.Optional;
 
 public class Util {
     public static World getWorld(WrapperWorld world) {
@@ -20,8 +19,14 @@ public class Util {
     }
 
     public static JSONVariableModifier getVariableModifier(JSONBullet definition, String name) {
-        Optional<JSONVariableModifier> var = definition.variableModifiers.stream().filter(mod -> mod.variable.equals(name)).findFirst();
-        return var.orElse(null);
+        if (definition.variableModifiers == null)
+            return null;
+
+        for (JSONVariableModifier var : definition.variableModifiers) {
+            if (var.variable.equals(name))
+                return var;
+        }
+        return null;
     }
 
     public static double getBlastSize(JSONBullet bullet) {
