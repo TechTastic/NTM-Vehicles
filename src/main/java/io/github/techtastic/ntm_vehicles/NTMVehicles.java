@@ -1,6 +1,7 @@
 package io.github.techtastic.ntm_vehicles;
 
 import com.hbm.entity.effect.EntityNukeTorex;
+import com.hbm.entity.logic.EntityBomber;
 import com.hbm.entity.logic.EntityNukeExplosionMK5;
 import com.hbm.explosion.ExplosionChaos;
 import io.github.techtastic.ntm_vehicles.ntm_vehicles.Tags;
@@ -46,6 +47,15 @@ public class NTMVehicles {
             double speed = Util.getConstantValue(bullet.definition, "gasSpreadSpeed", 1.25);
             int gasType = (int) Util.getConstantValue(bullet.definition, "gasType", 0);
             ExplosionChaos.spawnChlorine(actualWorld, pos.x, pos.y, pos.z, (int) Util.getBlastSize(bullet.definition), speed, gasType);
+        });
+
+        EntityBullet.registerCustomHitFunction("ntm_vehicles:napalm", (world, pos, side, type, bullet) -> {
+            World actualWorld = Util.getWorld((WrapperWorld) world);
+
+            if (actualWorld == null)
+                return;
+
+            actualWorld.spawnEntity(EntityBomber.statFacNapalm(actualWorld, pos.x, pos.y, pos.z));
         });
     }
 }
