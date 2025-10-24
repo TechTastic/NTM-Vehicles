@@ -115,9 +115,9 @@ repositories {
         }
     }
 
-    flatDir {
-        dir "libs"
-    }
+    //flatDir {
+    //    dir "libs"
+    //}
 }
 
 dependencies {
@@ -156,7 +156,8 @@ dependencies {
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
 
-    implementation "com.example:Immersive Vehicles-1.12.2:22.18.0"
+    //implementation "com.example:Immersive Vehicles-1.12.2:22.18.0"
+    implementation "curse.maven:iv-286703:6820656"
     implementation "curse.maven:ntm-708939:7117833"
 }
 
