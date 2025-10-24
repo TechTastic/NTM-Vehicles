@@ -4,10 +4,15 @@ import com.hbm.entity.effect.EntityNukeTorex;
 import com.hbm.entity.logic.EntityBomber;
 import com.hbm.entity.logic.EntityNukeExplosionMK5;
 import com.hbm.explosion.ExplosionChaos;
+import com.hbm.explosion.ExplosionLarge;
+import com.hbm.lib.HBMSoundHandler;
 import io.github.techtastic.ntm_vehicles.ntm_vehicles.Tags;
 import mcinterface1122.WrapperWorld;
 import minecrafttransportsimulator.entities.instances.EntityBullet;
 import minecrafttransportsimulator.jsondefs.JSONVariableModifier;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -55,7 +60,14 @@ public class NTMVehicles {
             if (actualWorld == null)
                 return;
 
-            actualWorld.spawnEntity(EntityBomber.statFacNapalm(actualWorld, pos.x, pos.y, pos.z));
+            //actualWorld.spawnEntity(EntityBomber.statFacNapalm(actualWorld, pos.x, pos.y, pos.z));
+
+            ExplosionLarge.explode(actualWorld, pos.x, pos.y, pos.z, 2.5f, false, false, false);
+            ExplosionChaos.burn(actualWorld, new BlockPos(pos.x, pos.y, pos.z), 9);
+            ExplosionChaos.flameDeath(actualWorld, new BlockPos(pos.x, pos.y, pos.z), 14);
+
+            for(int i = 0; i < 5; i++)
+                ExplosionLarge.spawnBurst(actualWorld, pos.x, pos.y + 1, pos.z, actualWorld.rand.nextInt(10) + 15, actualWorld.rand.nextFloat() * 2 + 2);
         });
     }
 }
