@@ -1,2 +1,2 @@
-# Changelog - 1.0.1
-- Fixed dependency issue
+# Changelog - 1.0.2
+- Fixed `getWorld` testing for the wrong class

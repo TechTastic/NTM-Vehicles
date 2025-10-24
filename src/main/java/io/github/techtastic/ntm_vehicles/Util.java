@@ -4,6 +4,7 @@ import com.hbm.entity.effect.EntityNukeTorex;
 import com.hbm.entity.logic.EntityNukeExplosionMK5;
 import com.hbm.explosion.ExplosionChaos;
 import com.hbm.explosion.ExplosionLarge;
+import mcinterface1122.WrapperWorld;
 import minecrafttransportsimulator.baseclasses.Point3D;
 import minecrafttransportsimulator.entities.instances.PartGun;
 import minecrafttransportsimulator.items.instances.ItemBullet;
@@ -19,7 +20,7 @@ import java.lang.reflect.Field;
 public class Util {
     public static World getWorld(AWrapperWorld world) {
         try {
-            Class<?> clazz = Class.forName("mcinterface1201.WrapperWorld");
+            Class<WrapperWorld> clazz = WrapperWorld.class;
             Field field = clazz.getDeclaredField("world");
             field.setAccessible(true);
             return (World) field.get(world);
@@ -53,18 +54,18 @@ public class Util {
         if (!gun.world.isClient() && ConfigSystem.settings.damage.bulletBlockBreaking.value && world != null) {
             ItemBullet bullet = gun.lastLoadedBullet;
             int blastSize = (int) Util.getBlastSize(bullet.definition);
-            if (Util.getConstantValue(gun.lastLoadedBullet.definition, "nuke", 0.0) == 1.0) {
+            if (Util.getConstantValue(bullet.definition, "nuke", 0.0) == 1.0) {
                 world.spawnEntity(EntityNukeExplosionMK5.statFac(world, (int) Util.getBlastSize(bullet.definition), pos.x, pos.y, pos.z));
                 EntityNukeTorex.statFac(world, pos.x, pos.y, pos.z, blastSize);
             }
 
-            if (Util.getConstantValue(gun.lastLoadedBullet.definition, "gas", 0.0) == 1.0) {
+            if (Util.getConstantValue(bullet.definition, "gas", 0.0) == 1.0) {
                 double speed = Util.getConstantValue(bullet.definition, "gasSpreadSpeed", 1.25);
                 int gasType = (int) Util.getConstantValue(bullet.definition, "gasType", 0);
                 ExplosionChaos.spawnChlorine(world, pos.x, pos.y, pos.z, blastSize, speed, gasType);
             }
 
-            if (Util.getConstantValue(gun.lastLoadedBullet.definition, "napalm", 0.0) == 1.0) {
+            if (Util.getConstantValue(bullet.definition, "napalm", 0.0) == 1.0) {
                 //actualWorld.spawnEntity(EntityBomber.statFacNapalm(world, blockPosition.x, blockPosition.y, blockPosition.z));
 
                 ExplosionLarge.explode(world, pos.x, pos.y, pos.z, 2.5f, false, false, false);
