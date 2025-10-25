@@ -1,2 +1,2 @@
-# Changelog - 1.0.2
-- Fixed `getWorld` testing for the wrong class
+# Changelog - 1.0.3
+- Fixed Mixins not being loaded
