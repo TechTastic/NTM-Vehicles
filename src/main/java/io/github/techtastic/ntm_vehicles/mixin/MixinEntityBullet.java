@@ -1,5 +1,6 @@
 package io.github.techtastic.ntm_vehicles.mixin;
 
+import io.github.techtastic.ntm_vehicles.NTMVehicles;
 import io.github.techtastic.ntm_vehicles.Util;
 import minecrafttransportsimulator.baseclasses.Point3D;
 import minecrafttransportsimulator.blocks.components.ABlockBase;

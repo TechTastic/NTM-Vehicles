@@ -24,7 +24,10 @@ public class Util {
             Field field = clazz.getDeclaredField("world");
             field.setAccessible(true);
             return (World) field.get(world);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+            NTMVehicles.LOGGER.info("Issue with the world! Message: {}", ignored.getMessage());
+            ignored.printStackTrace();
+        }
         return null;
     }
 
